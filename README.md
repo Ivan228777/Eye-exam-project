@@ -18,21 +18,23 @@ By clicking on these links you will see a demonstration of the web application a
 # To launch project, you need to: 
 
 1. Install venv and requirements
-2. Launch Bot
-3. Launch Django web server
+2. Add a database
+3. Create a Superuser for django app
+4. Launch Bot
+5. Launch Django web server
 
 # Install venv and requirements
 
 1. Activate virtual environment
 2. From root folder run `pip install -r requirements.txt`
 
-# Add a database: 
+# Add a database 
 
 1. `.cd` to `eye-exam-project/eye_exam`
 2. run `python manage.py makemigrations` command
 3. run `python manage.py migrate` command
 
-# Create a Superuser for django app: 
+# Create a Superuser for django app 
 
 1. In `eye-exam-project/eye_exam` directory run `python manage.py createsuperuser` command
 2. After that write your username, email address and password
