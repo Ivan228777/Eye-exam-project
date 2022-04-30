@@ -1,0 +1,10 @@
+.vscode/
+.idea/
+./venv/
+./media_root
+local_settings.py
+__pycache__
+*.pyc
+/.env*
+/venv/
+/.idea/
