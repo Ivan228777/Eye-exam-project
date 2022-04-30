@@ -1,0 +1,283 @@
+{% load static %}
+        <html>
+            <div><button id = "print_button" onClick="window.print()">Распечатать</button></div>
+                <head>
+                    <link rel="stylesheet" href="{% static 'css/tasks.css' %}">
+                    <title>Test print page</title>
+                </head>
+                <body>
+                 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+
+
+                <style>
+                .content{
+                    height: 297mm; /*842*/
+                    width: 210mm;   /*595*/
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align:left;
+                    position:relative;
+                    background-color:white;
+                    padding-right:20px;
+                    color:#828282;
+                    }
+
+                .content_header{
+                    padding-top:15px;
+                    padding-bottom:70px;
+                    margin-top:-20px;
+                    height:70px;
+                    }
+
+                .top_right_corner{
+                    width: 60px;
+                    height: 60px;
+                    border-right:10px solid black;
+                    border-top:10px solid black;
+                    position:absolute;
+                    top:0;
+                    right:0;
+                }
+
+                .top_left_corner{
+                    width: 60px;
+                    height: 60px;
+                    border-top:10px solid black;
+                    border-left:10px solid black;
+                    position:absolute;
+                    top:0;
+                    left:0;
+                }
+
+                .bottom_right_corner{
+                    width: 60px;
+                    height: 60px;
+                    border-right:10px solid black;
+                    border-bottom:10px solid black;
+                    position:absolute;
+                    bottom:0;
+                    right:0;
+                }
+
+                .bottom_left_corner{
+                    width: 60px;
+                    height: 60px;
+                    border-bottom:10px solid black;
+                    border-left:10px solid black;
+                    position:absolute;
+                    bottom:0;
+                    left:0;
+                }
+
+                .break{
+                    margin-bottom: -22px;
+                    color:black;
+                }
+                .circle{
+                    margin-right:7px;
+                    height: 24px;
+                    width: 24px;
+                    vertical-align: middle;
+                    border: 4.5px solid black;
+                    border-radius: 50%;
+                    display: inline-block;
+                    text-align:center;
+                    }
+
+                 .content_block{
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    box-sizing: border-box;
+                    text-align: justify;
+                 }
+
+                 .content_block:after{
+                    position: relative;
+                    display: inline-block;
+                    width: 100%;
+                    height: auto;
+                    box-sizing: border-box;
+                    vertical-align: top;
+                    content: '';
+                 }
+
+                 .footer_style{
+                    height:70px; /* 107 */
+                 }
+
+                 #print_button{
+                    background-color: white;
+                    color: black;
+                    border: 2px solid #555555;
+                    border-radius:5px;
+                    font-size:30px;
+                 }
+
+                 #print_button:hover{
+                    background-color: #555555;
+                    color: white;
+                 }
+                 @media print {
+                    #print_button{
+                        display:none;
+                    }
+                    .page-breaker{
+                        page-break-after: always;
+                    }
+                    .footer_style{
+                        display:none;
+                    }
+                    .top_left_corner{
+                        margin-top:8px;
+                    }
+                    .top_right_corner{
+                        margin-right:8px;
+                        margin-top:8px;
+                    }
+                    .bottom_right_corner{
+                        margin-right:8px;
+                    }
+                 }
+
+                 .qrcode_style{
+                    /*margin-left:670px;*/
+                   /* margin-top:15px;*/
+                    margin-left:645px;
+                    margin-top:40px;
+                    position:absolute;
+                 }
+
+                 .inner_content{
+                    padding-top:45px;
+                    padding-left:10px;
+                    /*margin-right:-50px;*/
+                    margin-left:21px;
+                    margin-right:11px;
+                    display:flex;
+                    flex-direction: column;
+                    Justify-content:space-between;
+                 }
+
+                 body{
+                    /*background-color:#c7cfd4;*/
+                    }
+
+                 .footer_style{
+                    height:70px; /* 107 */
+                 }
+
+                 .answer_block{
+                    border:solid black 2.5px;
+                 }
+                 .question_block{
+                     border: solid black 4px;
+                     margin-bottom:10px;
+                     margin-right:8px;
+                     padding-bottom:5px;
+                 }
+
+                 .question_text{
+                    margin-top:4px;
+                    padding-left:5px;
+                 }
+                 .flex_block{
+                    padding-left:5px;
+                    display:flex;
+                    flex-direction:raw;
+                    Justify-content:start;
+                 }
+
+                    .answers_style {
+                    position: relative;
+                    /*display: inline-block;*/
+                    /*width: 24.6%;*/
+                    height: 30px;
+                   /* box-sizing: border-box;*/
+                    /*text-align: left;*/
+                    /*vertical-align: centre;*/
+                    padding-bottom:3px;
+                    padding-right:5px;
+                }
+
+                .words{
+                    display:flex;
+                    flex-direction:raw;
+                    justify-content:space-between;
+                    height:55px;
+                    margin-top:-25px;
+                    padding-left:5px;
+                    padding-right:5px;
+                }
+
+                .line{
+                    background-color:white;
+                    height: 15px;
+                    width: 780px;
+                    margin-left:-15px;
+                    margin-bottom:10px;
+                }
+
+               </style>
+
+
+
+                {% for student in students %}
+                    <div>
+                        <div>
+                            {% for test in test %}
+                                <div class = "content">
+                                    <div class="qrcode_style" id={{student.pk}}></div>
+                                    <div class="top_right_corner"></div>
+                                    <div class="top_left_corner"></div>
+                                    <div class="bottom_right_corner"></div>
+                                    <div class="bottom_left_corner"></div>
+                                    <div class="inner_content">
+                                    <header class="content_header">
+                                        <div>
+                                        <h1 class="break">{{ test.text }} {{ test.test_grade_num}}{{test.test_grade_letter}}</h1>
+                                        <h4>{{ student.surname }} {{ student.name}}</h4>
+                                        </div>
+                                    </header>
+                                        <div class="line"></div>
+                                    <div class="content_block">
+                                        {% for question in questions %}
+                                        <div class="question_block">
+                                            <p class="question_text">{{ question.name }}</p>
+                                            <div class="words">
+                                            {% for question_answer in question.answers %}
+                                                <p>{{ question_answer }}</p>
+                                            {% endfor %}
+                                                </div>
+                                            <div class="flex_block">
+                                                {% for i in question.number %}
+                                               <div class="answers_style"><div class="circle">{{i}}</div></div>
+                                                {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                     <script type="text/javascript">
+                                            var student = {{student.pk}}
+                                            var test = {{test.pk}}
+                                            var qrcode = new QRCode("{{student.pk}}", {
+                                            text: ("0".repeat((5 - (test.toString()).length))) + test.toString() + ("0".repeat((5 - (student.toString()).length))) + student.toString(),
+                                            width: 128,
+                                            height: 128,
+                                            colorDark : "#000000",
+                                            colorLight : "#ffffff",
+                                            correctLevel : QRCode.CorrectLevel.H
+                                             });
+                                        </script>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                        <footer class="footer_style"></footer>
+                <div class="page-breaker"></div>
+                </div>
+                </body>
+                {% endfor %}
+            </html>
+    <!--Обратить внимание на то , как scrambled_answers и all_correct_answers хранятся в бд-->
