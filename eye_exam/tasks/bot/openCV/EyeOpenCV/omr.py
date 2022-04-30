@@ -1,9 +1,9 @@
 import cv2 as cv
-from qr_system import detect_qr_code
+import qr_system as qrs
 import numpy as np
 import jsonpickle
 
-CORNER_PATH = './corner.png'
+CORNER_PATH = './openCV/EyeOpenCV/corner.png'
 PAPER_FORMAT = (1050, 1485)
 DEBUG = False
 
